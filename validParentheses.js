@@ -11,10 +11,12 @@
   }
   var array = s.split('')
   var opened = [];
+  var allOpened = [];
   var closed = [];
   for (var i = 0; i < array.length; i ++) {
     if(array[i] === '(' || array[i] === '[' || array[i] === '{' ){
       opened.push(array[i]);
+      allOpened.push(i)
     }
     if(array[i] === ')' || array[i] === ']' || array[i] === '}') {
       closed.push(array[i])
@@ -24,6 +26,6 @@
       }
     }
   }
-  if (opened.length !== 0) {return false}
+  if (allOpened.length !== closed.length) {return false}
   return true;
 };
