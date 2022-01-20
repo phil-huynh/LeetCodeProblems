@@ -4,28 +4,25 @@
  */
  var isValid = function(s) {
   if (s.length === 1) {return false}
-  var obj = {
-    '(' : ')',
-    '[' : ']',
-    '{' : '}'
-  }
   var array = s.split('')
-  var opened = [];
-  var allOpened = [];
-  var closed = [];
+  var close = [];
   for (var i = 0; i < array.length; i ++) {
-    if(array[i] === '(' || array[i] === '[' || array[i] === '{' ){
-      opened.push(array[i]);
-      allOpened.push(i)
+    if(array[i] === '(') {
+      close.push(')')
+    }
+    if(array[i] === '[') {
+      close.push(']')
+    }
+    if(array[i] === '{') {
+      close.push('}')
     }
     if(array[i] === ')' || array[i] === ']' || array[i] === '}') {
-      closed.push(array[i])
-      let lastOpened = opened.pop();
-      if (array[i] !== obj[lastOpened]) {
+      let correctClose = close.pop();
+      if (array[i] !== correctClose) {
         return false;
       }
     }
   }
-  if (allOpened.length !== closed.length) {return false}
+  if (close.length !== 0) {return false}
   return true;
 };
