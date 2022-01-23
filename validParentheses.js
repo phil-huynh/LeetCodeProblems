@@ -26,3 +26,4 @@
   if (close.length !== 0) {return false}
   return true;
 };
+
